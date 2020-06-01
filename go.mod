@@ -1,4 +1,4 @@
-module github.com/ipfs/go-ipns
+module github.com/TRON-US/go-btns
 
 require (
 	github.com/gogo/protobuf v1.3.1
