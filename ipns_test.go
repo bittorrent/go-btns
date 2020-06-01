@@ -1,4 +1,4 @@
-package ipns
+package btns
 
 import (
 	"fmt"
