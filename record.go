@@ -14,13 +14,13 @@ import (
 	record "github.com/libp2p/go-libp2p-record"
 )
 
-var log = logging.Logger("ipns")
+var log = logging.Logger("btns")
 
 var _ record.Validator = Validator{}
 
 // RecordKey returns the libp2p record key for a given peer ID.
 func RecordKey(pid peer.ID) string {
-	return "/ipns/" + string(pid)
+	return "/btns/" + string(pid)
 }
 
 // Validator is an IPNS record validator that satisfies the libp2p record
@@ -34,7 +34,7 @@ type Validator struct {
 // Validate validates an IPNS record.
 func (v Validator) Validate(key string, value []byte) error {
 	ns, pidString, err := record.SplitKey(key)
-	if err != nil || ns != "ipns" {
+	if err != nil || ns != "btns" {
 		return ErrInvalidPath
 	}
 
@@ -45,10 +45,10 @@ func (v Validator) Validate(key string, value []byte) error {
 		return ErrBadRecord
 	}
 
-	// Get the public key defined by the ipns path
+	// Get the public key defined by the btns path
 	pid, err := peer.IDFromString(pidString)
 	if err != nil {
-		log.Debugf("failed to parse ipns record key %s into peer ID", pidString)
+		log.Debugf("failed to parse btns record key %s into peer ID", pidString)
 		return ErrKeyFormat
 	}
 
@@ -70,7 +70,7 @@ func (v Validator) getPublicKey(pid peer.ID, entry *pb.IpnsEntry) (ic.PubKey, er
 	}
 
 	if v.KeyBook == nil {
-		log.Debugf("public key with hash %s not found in IPNS record and no peer store provided", pid)
+		log.Debugf("public key with hash %s not found in BTNS record and no peer store provided", pid)
 		return nil, ErrPublicKeyNotFound
 	}
 
