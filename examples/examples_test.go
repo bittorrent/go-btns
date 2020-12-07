@@ -7,7 +7,7 @@ import (
 	crypto "github.com/libp2p/go-libp2p-core/crypto"
 )
 
-var testPath = "/ipfs/Qme1knMqwt1hKZbc1BmQFmnm9f36nyQGwXxPGVpVJ9rMK5"
+var testPath = "/btfs/Qme1knMqwt1hKZbc1BmQFmnm9f36nyQGwXxPGVpVJ9rMK5"
 
 func TestKeyGeneration(t *testing.T) {
 	_, err := generateRSAKey()
