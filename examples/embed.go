@@ -6,7 +6,7 @@ import (
 	pb "github.com/TRON-US/go-btns/pb"
 
 	ipns "github.com/TRON-US/go-btns"
-	crypto "github.com/libp2p/go-libp2p-core/crypto"
+	crypto "github.com/libp2p/go-libp2p/core/crypto"
 )
 
 // CreateEntryWithEmbed shows how you can create an IPNS entry

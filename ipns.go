@@ -8,8 +8,8 @@ import (
 	pb "github.com/TRON-US/go-btns/pb"
 
 	u "github.com/ipfs/go-ipfs-util"
-	ic "github.com/libp2p/go-libp2p-core/crypto"
-	peer "github.com/libp2p/go-libp2p-core/peer"
+	ic "github.com/libp2p/go-libp2p/core/crypto"
+	peer "github.com/libp2p/go-libp2p/core/peer"
 )
 
 // Create creates a new IPNS entry and signs it with the given private key.
@@ -80,7 +80,7 @@ func EmbedPublicKey(pk ic.PubKey, entry *pb.IpnsEntry) error {
 
 	// We failed to extract the public key from the peer ID, embed it in the
 	// record.
-	pkBytes, err := pk.Bytes()
+	pkBytes, err := ic.MarshalPublicKey(pk)
 	if err != nil {
 		return err
 	}

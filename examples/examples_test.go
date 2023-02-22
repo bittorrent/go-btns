@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/TRON-US/go-btns/examples"
-	crypto "github.com/libp2p/go-libp2p-core/crypto"
+	crypto "github.com/libp2p/go-libp2p/core/crypto"
 )
 
 var testPath = "/btfs/Qme1knMqwt1hKZbc1BmQFmnm9f36nyQGwXxPGVpVJ9rMK5"

@@ -3,15 +3,16 @@ package btns
 import (
 	"bytes"
 	"errors"
+	"fmt"
 
 	pb "github.com/TRON-US/go-btns/pb"
 
 	proto "github.com/gogo/protobuf/proto"
 	logging "github.com/ipfs/go-log"
-	ic "github.com/libp2p/go-libp2p-core/crypto"
-	peer "github.com/libp2p/go-libp2p-core/peer"
-	pstore "github.com/libp2p/go-libp2p-core/peerstore"
 	record "github.com/libp2p/go-libp2p-record"
+	ic "github.com/libp2p/go-libp2p/core/crypto"
+	peer "github.com/libp2p/go-libp2p/core/peer"
+	pstore "github.com/libp2p/go-libp2p/core/peerstore"
 )
 
 var log = logging.Logger("btns")
@@ -46,8 +47,9 @@ func (v Validator) Validate(key string, value []byte) error {
 	}
 
 	// Get the public key defined by the btns path
-	pid, err := peer.IDFromString(pidString)
+	pid, err := peer.IDFromBytes([]byte(pidString))
 	if err != nil {
+		fmt.Println("666 err:", err)
 		log.Debugf("failed to parse btns record key %s into peer ID", pidString)
 		return ErrKeyFormat
 	}
