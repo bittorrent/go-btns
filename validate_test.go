@@ -11,10 +11,11 @@ import (
 
 	proto "github.com/gogo/protobuf/proto"
 	u "github.com/ipfs/go-ipfs-util"
-	ci "github.com/libp2p/go-libp2p-core/crypto"
-	peer "github.com/libp2p/go-libp2p-core/peer"
-	pstore "github.com/libp2p/go-libp2p-core/peerstore"
-	pstoremem "github.com/libp2p/go-libp2p-peerstore/pstoremem"
+	ci "github.com/libp2p/go-libp2p/core/crypto"
+	ic "github.com/libp2p/go-libp2p/core/crypto"
+	peer "github.com/libp2p/go-libp2p/core/peer"
+	pstore "github.com/libp2p/go-libp2p/core/peerstore"
+	pstoremem "github.com/libp2p/go-libp2p/p2p/host/peerstore/pstoremem"
 )
 
 func testValidatorCase(t *testing.T, priv ci.PrivKey, kbook pstore.KeyBook, key string, val []byte, eol time.Time, exp error) {
@@ -63,10 +64,15 @@ func TestValidator(t *testing.T) {
 
 	priv, id, _ := genKeys(t)
 	priv2, id2, _ := genKeys(t)
-	kbook := pstoremem.NewPeerstore()
+	kbook, err := pstoremem.NewPeerstore()
+	if err != nil {
+		t.Fatalf("NewPeerstore error %s ", err.Error())
+	}
 	kbook.AddPubKey(id, priv.GetPublic())
-	emptyKbook := pstoremem.NewPeerstore()
-
+	emptyKbook, err := pstoremem.NewPeerstore()
+	if err != nil {
+		t.Fatalf("NewPeerstore error %s ", err.Error())
+	}
 	testValidatorCase(t, priv, kbook, "/btns/"+string(id), nil, ts.Add(time.Hour), nil)
 	testValidatorCase(t, priv, kbook, "/btns/"+string(id), nil, ts.Add(time.Hour*-1), ErrExpiredRecord)
 	testValidatorCase(t, priv, kbook, "/btns/"+string(id), []byte("bad data"), ts.Add(time.Hour), ErrBadRecord)
@@ -89,8 +95,10 @@ func mustMarshal(t *testing.T, entry *pb.IpnsEntry) []byte {
 
 func TestEmbeddedPubKeyValidate(t *testing.T) {
 	goodeol := time.Now().Add(time.Hour)
-	kbook := pstoremem.NewPeerstore()
-
+	kbook, err := pstoremem.NewPeerstore()
+	if err != nil {
+		t.Fatalf("NewPeerstore error %s ", err.Error())
+	}
 	pth := []byte("/btfs/QmfM2r8seH2GiRaC4esTjeraXEachRt8ZsSeGaWTPLyMoG")
 
 	priv, _, ipnsk := genKeys(t)
@@ -102,7 +110,7 @@ func TestEmbeddedPubKeyValidate(t *testing.T) {
 
 	testValidatorCase(t, priv, kbook, ipnsk, mustMarshal(t, entry), goodeol, ErrPublicKeyNotFound)
 
-	pubkb, err := priv.GetPublic().Bytes()
+	pubkb, err := ic.MarshalPublicKey(priv.GetPublic())
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -118,7 +126,7 @@ func TestEmbeddedPubKeyValidate(t *testing.T) {
 	})
 
 	opriv, _, _ := genKeys(t)
-	wrongkeydata, err := opriv.GetPublic().Bytes()
+	wrongkeydata, err := ic.MarshalPublicKey(opriv.GetPublic())
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -131,8 +139,10 @@ func TestPeerIDPubKeyValidate(t *testing.T) {
 	t.Skip("disabled until libp2p/go-libp2p-crypto#51 is fixed")
 
 	goodeol := time.Now().Add(time.Hour)
-	kbook := pstoremem.NewPeerstore()
-
+	kbook, err := pstoremem.NewPeerstore()
+	if err != nil {
+		t.Fatalf("NewPeerstore error %s ", err.Error())
+	}
 	pth := []byte("/btfs/QmfM2r8seH2GiRaC4esTjeraXEachRt8ZsSeGaWTPLyMoG")
 
 	sk, pk, err := ci.GenerateEd25519Key(rand.New(rand.NewSource(42)))
