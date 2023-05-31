@@ -1,12 +1,12 @@
-module github.com/TRON-US/go-btns
+module github.com/bittorrent/go-btns
 
 require (
+	github.com/bittorrent/protobuf v1.4.0
 	github.com/gogo/protobuf v1.3.2
 	github.com/ipfs/go-ipfs-util v0.0.1
 	github.com/ipfs/go-log v0.0.1
 	github.com/libp2p/go-libp2p v0.23.4
 	github.com/libp2p/go-libp2p-record v0.1.2
-	github.com/tron-us/protobuf v1.3.7
 )
 
 require (
@@ -27,7 +27,6 @@ require (
 	github.com/multiformats/go-base36 v0.1.0 // indirect
 	github.com/multiformats/go-multiaddr v0.7.0 // indirect
 	github.com/multiformats/go-multiaddr-fmt v0.1.0 // indirect
-	github.com/multiformats/go-multiaddr-net v0.1.1 // indirect
 	github.com/multiformats/go-multibase v0.1.1 // indirect
 	github.com/multiformats/go-multicodec v0.6.0 // indirect
 	github.com/multiformats/go-multihash v0.2.1 // indirect

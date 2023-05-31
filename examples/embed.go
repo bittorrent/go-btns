@@ -3,9 +3,9 @@ package examples
 import (
 	"time"
 
-	pb "github.com/TRON-US/go-btns/pb"
+	pb "github.com/bittorrent/go-btns/pb"
 
-	ipns "github.com/TRON-US/go-btns"
+	ipns "github.com/bittorrent/go-btns"
 	crypto "github.com/libp2p/go-libp2p/core/crypto"
 )
 

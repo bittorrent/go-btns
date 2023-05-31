@@ -5,8 +5,8 @@ package btns_pb
 
 import (
 	fmt "fmt"
-	github_com_tron_us_protobuf_proto "github.com/tron-us/protobuf/proto"
-	proto "github.com/tron-us/protobuf/proto"
+	github_com_tron_us_protobuf_proto "github.com/bittorrent/protobuf/proto"
+	proto "github.com/bittorrent/protobuf/proto"
 	io "io"
 	math "math"
 	math_bits "math/bits"

@@ -3,7 +3,7 @@ package examples_test
 import (
 	"testing"
 
-	"github.com/TRON-US/go-btns/examples"
+	"github.com/bittorrent/go-btns/examples"
 	crypto "github.com/libp2p/go-libp2p/core/crypto"
 )
 
