@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	pb "github.com/TRON-US/go-btns/pb"
+	pb "github.com/bittorrent/go-btns/pb"
 
 	u "github.com/ipfs/go-ipfs-util"
 	ic "github.com/libp2p/go-libp2p/core/crypto"

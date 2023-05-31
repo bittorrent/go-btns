@@ -2,7 +2,7 @@
 
 > btns record definitions
 
-This package contains all of the components necessary to create, understand, and validate BTNS records. It does *not* publish or resolve those records. [`go-btfs`](https://github.com/TRON-US/go-btfs) uses this package internally to manipulate records.
+This package contains all of the components necessary to create, understand, and validate BTNS records. It does *not* publish or resolve those records. [`go-btfs`](https://github.com/bittorrent/go-btfs) uses this package internally to manipulate records.
 
 ## Usage
 
@@ -12,7 +12,7 @@ To create a new BTNS record:
 import (
     "time"
 
-    btns "github.com/TRON-US/go-btns"
+    btns "github.com/bittorrent/go-btns"
     crypto "github.com/libp2p/go-libp2p-crypto"
 )
 
@@ -34,16 +34,16 @@ if err != nil {
 
 Once you have the record, you’ll need to use BTFS to *publish* it.
 
-There are several other major operations you can do with `go-btns`. Check out the [API docs](https://pkg.go.dev/github.com/TRON-US/go-btns) or look at the tests in this repo for examples.
+There are several other major operations you can do with `go-btns`. Check out the [API docs](https://pkg.go.dev/github.com/bittorrent/go-btns) or look at the tests in this repo for examples.
 
 ## Documentation
 
-https://pkg.go.dev/github.com/TRON-US/go-btns
+https://pkg.go.dev/github.com/bittorrent/go-btns
 
 ## Contribute
 
-Feel free to join in. All welcome. Open an [issue](https://github.com/TRON-US/go-btns/issues)!
+Feel free to join in. All welcome. Open an [issue](https://github.com/bittorrent/go-btns/issues)!
 
 ## License
 
-Copyright (c) TRON-US. 
+Copyright (c) Bittorrent. 
